@@ -10,6 +10,8 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Doc } from "@/convex/_generated/dataModel"
+import { Eye } from "lucide-react"
+import Link from "next/link"
 
 export function DocumentCard({ document }: {document: Doc<"documents">}) {
     return (
@@ -22,7 +24,12 @@ export function DocumentCard({ document }: {document: Doc<"documents">}) {
         Card Content
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline" className="bg-rose-600/15 hover:bg-rose-600/25 dark:bg-rose-950 dark:hover:bg-rose-900/60 border-none">View</Button>
+        <Button asChild variant="outline" className="group bg-rose-600/15 hover:bg-rose-600/25 dark:bg-rose-950 dark:hover:bg-rose-900/60 border-none flex items-center gap-2">
+          <Link href={"/documents/" + document._id}>
+            <Eye className="size-4 group-hover:scale-125 transition-all" />
+            View
+          </Link>
+        </Button>
       </CardFooter>
     </Card>
     )

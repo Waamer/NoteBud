@@ -3,7 +3,7 @@
 import { api } from "@/convex/_generated/api";
 import { Authenticated, Unauthenticated, useMutation, useQuery } from "convex/react";
 import { DocumentCard } from "./document-card";
-import CreateDocButton from "./create-doc-button";
+import UploadDocButton from "./upload-doc-button";
 
 export default function Home() {
 
@@ -14,7 +14,7 @@ export default function Home() {
     <main className="p-12 sm:p-16 md:p-20 xl:p-24 space-y-8">
       <div className="flex justify-between items-center flex-col space-y-3 sm:space-y-0 sm:flex-row">
         <h1 className="text-4xl font-bold">My Documents</h1>
-        <CreateDocButton />
+        <UploadDocButton />
       </div>
       <Unauthenticated>
         Please Sign in

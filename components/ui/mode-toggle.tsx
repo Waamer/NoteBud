@@ -20,11 +20,11 @@ export function ModeToggle() {
   }
 
   return (
-    <Button variant="outline" size="icon" onClick={toggleTheme} className="bg-rose-600/10 hover:bg-rose-600/20 dark:bg-rose-950/80 dark:hover:bg-rose-900/60 border-none transition-all hover:scale-95 scale-90">
+    <Button variant="outline" size="icon" onClick={toggleTheme} className="group bg-rose-600/10 hover:bg-rose-600/20 dark:bg-rose-950/80 dark:hover:bg-rose-900/60 border-none transition-all scale-90">
       {theme === "dark" ? (
-        <Sun className="h-[1.4rem] w-[1.4rem] transition-all text-rose-500" />
+        <Sun className="h-[1.4rem] w-[1.4rem] transition-all text-rose-500 group-hover:rotate-45 group-hover:scale-110" />
       ) : (
-        <Moon className="h-[1.4rem] w-[1.4rem] transition-all text-rose-500/80" />
+        <Moon className="h-[1.4rem] w-[1.4rem] transition-all text-rose-500/80 group-hover:rotate-[25deg] group-hover:scale-[1.20]" />
       )}
       <span className="sr-only">Toggle theme</span>
     </Button>
