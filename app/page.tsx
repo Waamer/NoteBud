@@ -43,7 +43,7 @@ export default function Home() {
             />
             <h2 className="text-nowrap text-md sm:text-2xl mb-2">Upload your first document to get started!</h2>
             <div className="hidden sm:block">
-            <UploadDocButton />
+              <UploadDocButton />
             </div>
           </div>
         )}

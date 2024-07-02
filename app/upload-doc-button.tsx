@@ -12,6 +12,7 @@ import {
 import UploadDocForm from "./upload-doc-form";
 import { useState } from "react";
 import { Upload } from "lucide-react";
+import { btnIconStyles, btnStyles } from "@/styles/styles";
   
 
 export default function UploadDocButton() {
@@ -20,8 +21,8 @@ export default function UploadDocButton() {
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
         <DialogTrigger asChild>    
-            <Button className="w-full max-w-[300px] sm:w-auto flex items-center gap-2">
-                <Upload className="size-[18px]" />
+            <Button className={btnStyles}>
+                <Upload className={btnIconStyles} />
                 Upload Document
             </Button>
         </DialogTrigger>

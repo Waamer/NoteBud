@@ -6,6 +6,7 @@ import { Authenticated, Unauthenticated, useMutation, useQuery } from "convex/re
 import ChatPanel from "./chat-panel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Skeleton } from "@/components/ui/skeleton";
+import { DeleteButton } from "./delete-button";
 
 export default function DocumentPage({ params }: { params: { documentId: Id<"documents"> } }) {
 
@@ -15,8 +16,9 @@ export default function DocumentPage({ params }: { params: { documentId: Id<"doc
         <main className="p-12 px-10 sm:p-16 md:p-20 xl:px-24 space-y-8">
             {!document && 
                 <div className="space-y-4">
-                    <div>
-                        <Skeleton className="h-[35px] w-full max-w-[400px]" />
+                    <div className="flex justify-between items-center flex-col space-y-3 sm:space-y-0 sm:flex-row">
+                        <Skeleton className="h-[40px] w-full max-w-[400px]" />
+                        <Skeleton className="h-[40px] w-full max-w-[300px] sm:w-[101px]" />
                     </div>
                     <div className="flex gap-2 pt-6">
                         <Skeleton className="h-[35px] w-[90px]" />
@@ -27,8 +29,9 @@ export default function DocumentPage({ params }: { params: { documentId: Id<"doc
             }
 
             {document && <>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center flex-col space-y-3 sm:space-y-0 sm:flex-row">
                     <h1 className="text-4xl font-bold">{document.title}</h1>
+                    <DeleteButton documentId={document._id} />
                 </div>
                 <div className="flex gap-12">
                     <Tabs defaultValue="document" className="w-full">
