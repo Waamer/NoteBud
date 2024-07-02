@@ -5,6 +5,7 @@ export default defineSchema({
   documents: defineTable({ 
     title: v.string(),
     tokenIdentifier: v.string(),
+    description: v.optional(v.string()),
     fileId: v.id("_storage"),
   }).index('by_tokenIdendtifier', ['tokenIdentifier']),
   chats: defineTable({ 

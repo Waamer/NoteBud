@@ -1,6 +1,6 @@
 import { api, internal } from './_generated/api';
 import { Id } from './_generated/dataModel';
-import { MutationCtx, QueryCtx, action, internalQuery, mutation, query } from "./_generated/server";
+import { MutationCtx, QueryCtx, action, internalAction, internalMutation, internalQuery, mutation, query } from "./_generated/server";
 import { ConvexError, v } from "convex/values";
 import OpenAI from 'openai';
 
@@ -37,7 +37,7 @@ export const generateUploadUrl = mutation(async (ctx) => {
 export const getDocuments = query({
     async handler(ctx) {
         const userId = (await ctx.auth.getUserIdentity())?.tokenIdentifier
-        if (!userId) return [];
+        if (!userId) return undefined;
 
         return await ctx.db.query('documents').withIndex(
             'by_tokenIdendtifier', (q) => q.eq('tokenIdentifier', userId)
@@ -70,11 +70,18 @@ export const createDocument = mutation({
         const userId = (await ctx.auth.getUserIdentity())?.tokenIdentifier
         if (!userId) throw new ConvexError('Not Authenticated')
 
-        await ctx.db.insert('documents', {
+        const documentId = await ctx.db.insert('documents', {
             title: args.title,
+            description: "",
             tokenIdentifier: userId,
             fileId: args.fileId,
         })
+        await ctx.scheduler.runAfter(0, internal.documents.generateDocDescription,
+            {
+                fileId: args.fileId,
+                documentId,
+            }
+        )
     },
 })
 
@@ -130,4 +137,53 @@ export const askQuestion = action({
 
         return response
     }
+})
+
+export const generateDocDescription = internalAction({
+    args: {
+        fileId: v.id("_storage"),
+        documentId: v.id("documents"),
+    },
+    async handler(ctx, args) {
+        const file = await ctx.storage.get(args.fileId)
+        if (!file) throw new ConvexError("File not found!")
+
+        const text = await file.text();
+
+        const chatCompletion: OpenAI.Chat.Completions.ChatCompletion
+         = await openai.chat.completions.create({
+            messages: [
+                { 
+                    role: 'system',
+                    content: `Here is the text file: ${text}` 
+                },
+                {
+                    role: 'user',
+                    content: `Generate a small simple 1 sentence description for this document`
+                }
+            ],
+            model: 'gpt-3.5-turbo',
+        });
+
+        const response = chatCompletion.choices[0].message.content ?? "Couldn't figure out the description for this document"
+
+        await ctx.runMutation(internal.documents.updateDocumentDescription, {
+            documentId: args.documentId,
+            description: response,
+        })
+
+        return response
+    }
+})
+
+export const updateDocumentDescription = internalMutation({
+    args: {
+        documentId: v.id("documents"),
+        description: v.string(),
+    },
+    async handler(ctx, args) {
+        await ctx.db.patch(args.documentId, {
+            description: args.description,
+        })
+    },
 })
