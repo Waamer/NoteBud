@@ -19,7 +19,7 @@
       --muted-foreground: 360 5% 35%;
       --accent: 322 30% 80%;
       --accent-foreground: 360 5% 15%;
-      --destructive: 0 100% 30%;
+      --destructive: 0 100% 35%;
       --destructive-foreground: 360 5% 90%;
       --border: 360 30% 50%;
       --input: 360 30% 26%;
@@ -41,7 +41,7 @@
       --muted-foreground: 360 5% 60%;
       --accent: 322 30% 25%;
       --accent-foreground: 360 5% 90%;
-      --destructive: 0 100% 30%;
+      --destructive: 0 100% 20%;
       --destructive-foreground: 360 5% 90%;
       --border: 360 30% 26%;
       --input: 360 30% 26%;
@@ -58,4 +58,8 @@
     body {
       @apply bg-background text-foreground;
     }
+  }
+  iframe {
+    color-scheme: light;
+    color:aliceblue
   }

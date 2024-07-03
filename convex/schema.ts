@@ -13,6 +13,9 @@ export default defineSchema({
     isHuman: v.boolean(),
     tokenIdentifier: v.string(),
     text: v.string(),
-
-  }).index('by_documentId_tokenIdendtifier', ['documentId', 'tokenIdentifier'])
+  }).index('by_documentId_tokenIdendtifier', ['documentId', 'tokenIdentifier']),
+  notes: defineTable({
+    text: v.string(),
+    tokenIdentifier: v.string(),
+  }).index('by_tokenIdendtifier', ['tokenIdentifier']),
 });

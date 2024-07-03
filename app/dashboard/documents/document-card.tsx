@@ -25,7 +25,7 @@ export function DocumentCard({ document }: {document: Doc<"documents">}) {
       </CardContent>
       <CardFooter className="flex justify-between">
         <Button asChild variant="outline" className="group bg-rose-600/15 hover:bg-rose-600/25 dark:bg-rose-950 dark:hover:bg-rose-900/60 border-none flex items-center gap-2">
-          <Link href={"/documents/" + document._id}>
+          <Link href={"/dashboard/documents/" + document._id}>
             <Eye className="size-4 group-hover:scale-125 transition-all" />
             View
           </Link>

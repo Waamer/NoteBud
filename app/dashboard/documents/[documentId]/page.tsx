@@ -13,7 +13,7 @@ export default function DocumentPage({ params }: { params: { documentId: Id<"doc
     const document = useQuery(api.documents.getDocument, { documentId: params.documentId });
 
     return (
-        <main className="p-12 px-10 sm:p-16 md:p-20 xl:px-24 space-y-8">
+        <main className="w-full space-y-8">
             {!document && 
                 <div className="space-y-4">
                     <div className="flex justify-between items-center flex-col space-y-3 sm:space-y-0 sm:flex-row">
