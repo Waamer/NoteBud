@@ -19,7 +19,7 @@ import { LoadingButton } from "@/components/loading-button"
 import { Textarea } from "@/components/ui/textarea"
  
 const formSchema = z.object({
-  text: z.string().min(1).max(2500),
+  text: z.string().min(1).max(3500),
 })
 
 export default function CreateNoteForm({ onNoteCreated }: { onNoteCreated: () => void }) {

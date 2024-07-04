@@ -28,6 +28,7 @@ import Link from "next/link"
 import { useQuery } from "convex/react"
 import { api } from "@/convex/_generated/api"
 import { usePathname } from "next/navigation"
+import { cn } from "@/lib/utils"
 
 type Note = {
   label: string;
@@ -51,6 +52,8 @@ export function NotePicker() {
       const currentNote = fetchedNotes.find(note => pathname.includes(note.link));
       if (currentNote) {
         setSelectedNote(currentNote);
+      } else {
+        setSelectedNote(null)
       }
     }
   }, [notesQuery, pathname]);
@@ -65,21 +68,21 @@ export function NotePicker() {
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0" align="start">
-          <StatusList notes={notes} setOpen={setIsOpenPopover} setSelectedNote={setSelectedNote} />
+          <StatusList notes={notes} setOpen={setIsOpenPopover} setSelectedNote={setSelectedNote} selectedNote={selectedNote}/>
         </PopoverContent>
       </Popover>
     </div>
 
-    <div className="sm:hidden">
+    <div className="sm:hidden w-full">
     <Drawer open={isOpenDrawer} onOpenChange={setIsOpenDrawer}>
-      <DrawerTrigger asChild>
+      <DrawerTrigger asChild className="w-full">
         <Button variant="outline" className={outlineBtnStyles}>
           {selectedNote ? <>{selectedNote.label}</> : <><MousePointerClick strokeWidth={1.75} />Pick a note</>}
         </Button>
       </DrawerTrigger>
       <DrawerContent>
         <div className="mt-4 border-t">
-          <StatusList notes={notes} setOpen={setIsOpenDrawer} setSelectedNote={setSelectedNote} />
+          <StatusList notes={notes} setOpen={setIsOpenDrawer} setSelectedNote={setSelectedNote} selectedNote={selectedNote} />
         </div>
       </DrawerContent>
     </Drawer>
@@ -92,10 +95,12 @@ function StatusList({
   notes,
   setOpen,
   setSelectedNote,
+  selectedNote,
 }: {
   notes: Note[];
   setOpen: (open: boolean) => void
   setSelectedNote: (note: Note | null) => void;
+  selectedNote: Note | null
 }) {
   return (
     <Command>
@@ -107,6 +112,10 @@ function StatusList({
             <Link key={note.link} href={note.link}>
             <CommandItem
               value={note.label}
+              className={cn({
+                "bg-accent text-accent-foreground": selectedNote === note
+                }, "hover:bg-accent hover:text-accent-foreground"
+              )}
               onSelect={(label) => {
                 setSelectedNote(
                   notes.find((priority) => priority.label === label) || null

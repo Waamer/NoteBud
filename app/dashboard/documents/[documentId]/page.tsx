@@ -40,7 +40,7 @@ export default function DocumentPage({ params }: { params: { documentId: Id<"doc
                             <TabsTrigger value="chat">Chat</TabsTrigger>
                         </TabsList>
                         <TabsContent value="document">
-                            <div className="bg-rose-200/60 dark:bg-rose-950/30 rounded-lg p-2 dark:text-rose-50 flex-1 h-[500px]">
+                            <div className="bg-rose-200/60 dark:bg-rose-950/50 rounded-lg p-2 dark:text-rose-50 flex-1 h-[500px]">
                                 {document.documentUrl && <iframe className="size-full" src={document.documentUrl}/>}
                             </div>
                         </TabsContent>

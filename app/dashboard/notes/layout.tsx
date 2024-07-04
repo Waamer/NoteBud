@@ -10,10 +10,10 @@ export default function NotesLayout({
     children: React.ReactNode;
   }>) {
     return (
-        <main className="space-y-8 w-full">
+        <main className="space-y-4 sm:space-y-8 w-full">
             <div className="flex justify-between items-center flex-col space-y-3 sm:space-y-0 sm:flex-row">
                 <h1 className="text-4xl font-bold">My Notes</h1>
-                <div className="flex gap-2 flex-col min-[320px]:flex-row items-center">
+                <div className="flex gap-2 flex-col min-[400px]:flex-row items-center w-full min-[400px]:w-auto">
                     <NotePicker />
                     <CreateNoteButton />
                 </div>

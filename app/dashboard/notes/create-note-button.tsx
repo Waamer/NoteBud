@@ -49,10 +49,10 @@ export default function CreateNoteButton() {
         </Dialog>
       </div>
 
-      <div className="sm:hidden">
+      <div className="sm:hidden w-full">
         <Drawer open={isOpenDrawer} onOpenChange={setIsOpenDrawer}>
           <DrawerTrigger asChild>
-            <Button className={btnStyles}><Plus className={btnIconStyles} />Create Note</Button>
+            <Button className={cn(btnStyles, "w-full max-w-none")}><Plus className={btnIconStyles} />Create Note</Button>
           </DrawerTrigger>
           <DrawerContent>
             <DrawerHeader className="text-left">
