@@ -27,7 +27,7 @@ export default function ToggleableNav() {
                     <nav>
                         <ul className="space-y-5">
                             <li>
-                                <Link href="/" className="transition-all flex gap-1 pb-2 items-center w-fit hover:text-rose-600/80 transition-color duration-200">
+                                <Link href="/" onClick={() => setIsOpen(!isOpen)} className="transition-all flex gap-1 pb-2 items-center w-fit hover:text-rose-600/80 transition-color duration-200">
                                     <Bot strokeWidth={1.75} size={28}/>
                                     <h1 className="text-2xl mt-0.5 font-semibold select-none">NoteBud</h1>
                                 </Link>
@@ -38,7 +38,7 @@ export default function ToggleableNav() {
                                     {
                                         "text-rose-600": pathname.endsWith('dashboard/documents')
                                     },
-                                )}
+                                )} onClick={() => setIsOpen(!isOpen)}
                                 href="/dashboard/documents" >
                                 <Files strokeWidth={1.75} />
                                     Documents
@@ -50,7 +50,8 @@ export default function ToggleableNav() {
                                     {
                                         "text-rose-600": pathname.endsWith('dashboard/notes')
                                     },
-                                )} href="/dashboard/notes" >
+                                )} onClick={() => setIsOpen(!isOpen)}
+                                href="/dashboard/notes" >
                                     <NotebookPen strokeWidth={1.75} />
                                     Notes
                                 </Link>
@@ -61,7 +62,8 @@ export default function ToggleableNav() {
                                     {
                                         "text-rose-600": pathname.endsWith('dashboard/settings')
                                     },
-                                )} href="/dashboard/settings" >
+                                )} onClick={() => setIsOpen(!isOpen)}
+                                href="/dashboard/settings" >
                                     <Settings strokeWidth={1.75} />
                                     Settings
                                 </Link>

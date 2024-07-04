@@ -55,7 +55,7 @@ export default function UploadDocForm({ onUpload }: { onUpload: () => void }) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 px-4 sm:px-0">
         <FormField
           control={form.control}
           name="title"

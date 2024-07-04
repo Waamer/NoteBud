@@ -16,7 +16,7 @@ export function LoadingButton(
         onClick?: (e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void
     }) {
     return (
-    <Button className="flex gap-2 items-center" disabled={isLoading} type="submit" onClick={(e) => {onClick?.(e)}}>
+    <Button className="flex gap-2 items-center w-full sm:w-auto" disabled={isLoading} type="submit" onClick={(e) => {onClick?.(e)}}>
         {isLoading && <Loader2 className="animate-spin" />} 
         {isLoading ? loadingText : children}
     </Button>
