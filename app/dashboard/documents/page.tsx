@@ -14,7 +14,7 @@ export default function DocumentsPage() {
   const createDocument = useMutation(api.documents.createDocument);
 
   return (
-    <main className="space-y-8 w-full">
+    <main className="space-y-4 sm:space-y-6 w-full">
       <div className="flex justify-between items-center flex-col space-y-3 sm:space-y-0 sm:flex-row">
         <h1 className="text-4xl font-bold">My Documents</h1>
         <UploadDocButton />

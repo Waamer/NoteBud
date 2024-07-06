@@ -21,17 +21,17 @@ export default function NotePage() {
 
         {!note && 
             <div className="space-y-4">
-                <div className="flex justify-between items-center flex-col space-y-3 sm:space-y-0 sm:flex-row">
-                    <Skeleton className="h-[40px] w-full max-w-[400px]" />
-                    <Skeleton className="h-[40px] w-full max-w-[300px] sm:w-[101px]" />
-                </div>
-                <div className="flex gap-2 pt-6">
-                    <Skeleton className="h-[35px] w-[90px]" />
-                    <Skeleton className="h-[35px] w-[55px]" />
-                </div>    
-                <Skeleton className="h-[500px]" />
+                <div className="flex justify-between items-center flex-col-reverse space-y-1 sm:space-y-0 sm:flex-row">
+                    <Skeleton className="h-[40px] w-full max-w-[300px] mt-2 sm:mt-0" />
+                    <div className="flex gap-2 flex-col sm:flex-row items-center w-full sm:w-auto">
+                        <Skeleton className="h-[40px] w-full sm:w-[80px]" />
+                        <Skeleton className="h-[40px] w-full sm:w-[91px]" />
+                    </div>
+                </div>   
+                <Skeleton className="h-[300px]" />
             </div>
         }
+        {note && <>
             <div className="flex justify-between items-center flex-col-reverse space-y-1 sm:space-y-0 sm:flex-row ">
                 <h1 className="text-2xl font-semibold mt-2 sm:mt-0">{note?.text.substring(0, 20) + '...'}</h1>
                 <div className="flex gap-2 flex-col sm:flex-row items-center w-full sm:w-auto">
@@ -43,6 +43,8 @@ export default function NotePage() {
                 </div>
             </div>
             <h1>{note?.text}</h1>
+            </>
+        }
         </div>
     )
 }
