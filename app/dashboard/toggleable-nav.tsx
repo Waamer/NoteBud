@@ -1,6 +1,6 @@
 'use client'
 import { cn } from "@/lib/utils";
-import { Bot, Files, Menu, NotebookPen, Settings } from "lucide-react";
+import { Bot, Files, FileSearch, Menu, NotebookPen, Settings } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -30,6 +30,18 @@ export default function ToggleableNav() {
                                 <Link href="/" onClick={() => setIsOpen(!isOpen)} className="transition-all flex gap-1 pb-2 items-center w-fit hover:text-rose-600/80 transition-color duration-200">
                                     <Bot strokeWidth={1.75} size={28}/>
                                     <h1 className="text-2xl mt-0.5 font-semibold select-none">NoteBud</h1>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link className={cn(
+                                    "font-light text-lg sm:text-xl flex gap-1 items-center hover:text-rose-600/80 transition-color duration-200 w-fit",
+                                    {
+                                        "text-rose-600": pathname.endsWith('dashboard/search')
+                                    },
+                                )} onClick={() => setIsOpen(!isOpen)}
+                                href="/dashboard/search" >
+                                <FileSearch strokeWidth={1.75} />
+                                    Search
                                 </Link>
                             </li>
                             <li>

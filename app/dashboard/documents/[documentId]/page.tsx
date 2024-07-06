@@ -13,7 +13,7 @@ export default function DocumentPage({ params }: { params: { documentId: Id<"doc
     const document = useQuery(api.documents.getDocument, { documentId: params.documentId });
 
     return (
-        <main className="w-full space-y-8">
+        <main className="w-full space-y-4 sm:space-y-6">
             {!document && 
                 <div className="space-y-4">
                     <div className="flex justify-between items-center flex-col space-y-3 sm:space-y-0 sm:flex-row">
@@ -29,16 +29,16 @@ export default function DocumentPage({ params }: { params: { documentId: Id<"doc
             }
 
             {document && <>
-                <div className="flex justify-between items-center flex-col space-y-3 sm:space-y-0 sm:flex-row">
                     <h1 className="text-4xl font-bold">{document.title}</h1>
-                    <DeleteButton documentId={document._id} />
-                </div>
                 <div className="flex gap-12">
                     <Tabs defaultValue="document" className="w-full">
+                        <div className="flex gap-2 justify-between">
                         <TabsList className="mb-2">
                             <TabsTrigger value="document">Document</TabsTrigger>
                             <TabsTrigger value="chat">Chat</TabsTrigger>
                         </TabsList>
+                        <DeleteButton documentId={document._id} />
+                        </div>
                         <TabsContent value="document">
                             <div className="bg-rose-200/60 dark:bg-rose-950/50 rounded-lg p-2 dark:text-rose-50 flex-1 h-[500px]">
                                 {document.documentUrl && <iframe className="size-full" src={document.documentUrl}/>}

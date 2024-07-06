@@ -47,8 +47,6 @@ export function NotePicker() {
     if (notesQuery) {
       const fetchedNotes = notesQuery.map(note => ({ label: note.text.substring(0, 20) + '...', link: '/dashboard/notes/' + note._id }));
       setNotes(fetchedNotes);
-      console.log(fetchedNotes)
-      console.log(pathname)
       const currentNote = fetchedNotes.find(note => pathname.includes(note.link));
       if (currentNote) {
         setSelectedNote(currentNote);

@@ -7,7 +7,13 @@ export default defineSchema({
     tokenIdentifier: v.string(),
     description: v.optional(v.string()),
     fileId: v.id("_storage"),
-  }).index('by_tokenIdendtifier', ['tokenIdentifier']),
+    embedding: v.optional(v.array(v.float64())),
+  }).index('by_tokenIdendtifier', ['tokenIdentifier'])
+    .vectorIndex("by_embedding", {
+      vectorField: "embedding",
+      dimensions: 1536,
+      filterFields: ["tokenIdentifier"],
+    }),
   chats: defineTable({ 
     documentId: v.id("documents"),
     isHuman: v.boolean(),
@@ -17,5 +23,11 @@ export default defineSchema({
   notes: defineTable({
     text: v.string(),
     tokenIdentifier: v.string(),
-  }).index('by_tokenIdendtifier', ['tokenIdentifier']),
+    embedding: v.optional(v.array(v.float64())),
+  }).index('by_tokenIdendtifier', ['tokenIdentifier'])
+    .vectorIndex("by_embedding", {
+      vectorField: "embedding",
+      dimensions: 1536,
+      filterFields: ["tokenIdentifier"],
+    }),
 });
