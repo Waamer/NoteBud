@@ -29,6 +29,7 @@ import { useQuery } from "convex/react"
 import { api } from "@/convex/_generated/api"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { useOrganization } from "@clerk/nextjs"
 
 type Note = {
   label: string;
@@ -36,7 +37,8 @@ type Note = {
 };
 
 export function NotePicker() {
-  const notesQuery = useQuery(api.notes.getNotes);
+  const organization = useOrganization()
+  const notesQuery = useQuery(api.notes.getNotes, { orgId: organization.organization?.id });
   const [notes, setNotes] = useState<Note[]>([]);
   const [isOpenPopover, setIsOpenPopover] = useState(false);
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);

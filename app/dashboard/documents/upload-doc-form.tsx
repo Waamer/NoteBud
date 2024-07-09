@@ -19,6 +19,7 @@ import { api } from "@/convex/_generated/api"
 import { Loader2 } from "lucide-react"
 import { LoadingButton } from "@/components/loading-button"
 import { Id } from "@/convex/_generated/dataModel"
+import { useOrganization } from "@clerk/nextjs"
  
 const formSchema = z.object({
   title: z.string().min(1).max(250),
@@ -27,6 +28,7 @@ const formSchema = z.object({
 
 export default function UploadDocForm({ onUpload }: { onUpload: () => void }) {
 
+    const organization = useOrganization()
     const createDocument = useMutation(api.documents.createDocument);
     const generateUploadUrl = useMutation(api.documents.generateUploadUrl)
     
@@ -49,7 +51,7 @@ export default function UploadDocForm({ onUpload }: { onUpload: () => void }) {
 
     const { storageId } = await result.json();
 
-    await createDocument({ title: values.title, fileId: storageId as Id<"_storage">, })
+    await createDocument({ title: values.title, fileId: storageId as Id<"_storage">, orgId: organization.organization?.id })
     onUpload()
   }
 

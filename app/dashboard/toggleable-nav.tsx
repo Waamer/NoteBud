@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"; // Adjust the import path according to your project structure
 import { Button } from "@/components/ui/button";
+import { OrganizationSwitcher } from "@clerk/nextjs";
 
 export default function ToggleableNav() {
     const pathname = usePathname();
@@ -25,12 +26,13 @@ export default function ToggleableNav() {
                 </SheetTrigger>
                 <SheetContent side="left">
                     <nav>
-                        <ul className="space-y-5">
+                        <ul className="space-y-4">
                             <li>
                                 <Link href="/" onClick={() => setIsOpen(!isOpen)} className="transition-all flex gap-1 pb-2 items-center w-fit hover:text-rose-600/80 transition-color duration-200">
                                     <Bot strokeWidth={1.75} size={28}/>
                                     <h1 className="text-2xl mt-0.5 font-semibold select-none">NoteBud</h1>
                                 </Link>
+
                             </li>
                             <li>
                                 <Link className={cn(

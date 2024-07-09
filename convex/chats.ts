@@ -11,7 +11,7 @@ export const getChatsForDocument = query({
         const userId = (await ctx.auth.getUserIdentity())?.tokenIdentifier
         if (!userId) return []
 
-        return await ctx.db.query("chats").withIndex("by_documentId_tokenIdendtifier",(q) =>
+        return await ctx.db.query("chats").withIndex("by_documentId_tokenIdentifier",(q) =>
             q
                 .eq("documentId", args.documentId)
                 .eq("tokenIdentifier", userId)

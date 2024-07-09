@@ -5,7 +5,7 @@ import { SearchForm } from "./search-form";
 import { Doc } from "@/convex/_generated/dataModel";
 import { api } from "@/convex/_generated/api";
 import Link from "next/link";
-import { NotebookText, File } from "lucide-react";
+import { NotebookText, File, Sparkles } from "lucide-react";
 
 function SearchResult({
     url,
@@ -56,6 +56,18 @@ export default function SearchPage() {
                 setResults(searchResults)
                 localStorage.setItem('searchResults', JSON.stringify(searchResults))
             }}/>
+
+            {!results &&
+                <div className="w-full space-y-4 transition-all bg-rose-200/60 dark:bg-rose-950/60 hover:bg-rose-300/60 hover:dark:bg-rose-900/60 rounded-lg p-3 dark:text-rose-50 flex-1 whitespace-pre-line">
+                    <div className="flex gap-2 items-center flex-col min-[330px]:flex-row justify-between">
+                        <div className="flex gap-1.5 items-center text-xl">
+                            <Sparkles size={23} strokeWidth={1.8}/>
+                            Example
+                        </div>
+                    </div>
+                    <div>This is a example of a search result. You can click real search results to go to their associated notes/documents!</div>
+                </div>
+            }
 
             <ul className="flex flex-col gap-4">
             {results?.map((result) => {

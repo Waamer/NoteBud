@@ -7,11 +7,13 @@ import UploadDocButton from "./upload-doc-button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
+import { useOrganization } from "@clerk/nextjs";
 
 export default function DocumentsPage() {
-
-  const getDocuments = useQuery(api.documents.getDocuments);
-  const createDocument = useMutation(api.documents.createDocument);
+  const organization = useOrganization()
+  const getDocuments = useQuery(api.documents.getDocuments, {
+    orgId: organization.organization?.id
+  });
 
   return (
     <main className="space-y-4 sm:space-y-6 w-full">
