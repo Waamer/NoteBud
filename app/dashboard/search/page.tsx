@@ -12,13 +12,15 @@ function SearchResult({
     key,
     score,
     text,
-    type
+    type,
+    title
 }: {
     url: string,
     key: string,
     score: number,
     text: string,
-    type: string
+    type: string,
+    title: string
 }) {
     return(
         <Link href={url} key={key}>
@@ -30,7 +32,7 @@ function SearchResult({
                     </div>
                     <div className="text-sm">Relevancy of {(score * 100).toFixed(0)}%</div>
                 </div>
-                <div>{text.substring(0, 450) + '...'}</div>
+                <div><b className="text-lg font-medium">{title}:</b> {text.substring(0, 450) + '...'}</div>
             </li>
         </Link>
     )
@@ -40,11 +42,6 @@ export default function SearchPage() {
 
     const [results, setResults] = useState<typeof api.search.searchAction._returnType>(null)
 
-    useEffect(() => {
-        const storedResults = localStorage.getItem('searchResults')
-        if (!storedResults) return
-        setResults(JSON.parse(storedResults))
-    }, [] )
 
     return (
         <main className="space-y-4 sm:space-y-6 w-full">
@@ -54,7 +51,6 @@ export default function SearchPage() {
 
             <SearchForm setResults={(searchResults) => {
                 setResults(searchResults)
-                localStorage.setItem('searchResults', JSON.stringify(searchResults))
             }}/>
 
             {!results &&
@@ -79,6 +75,7 @@ export default function SearchPage() {
                             score={result.score}
                             text={result.record.text}
                             type="Note"
+                            title={result.record.title}
                         />
 
                             )
@@ -88,8 +85,9 @@ export default function SearchPage() {
                             url={`/dashboard/documents/${result.record._id}`}
                             key={result.record._id}
                             score={result.score}
-                            text={result.record.title + ': ' + result.record.description}
+                            text={result.record.description + ''}
                             type="Document"
+                            title={result.record.title}
                         />
                             )
                 }

@@ -27,9 +27,10 @@ import { MousePointerClick } from "lucide-react"
 import Link from "next/link"
 import { useQuery } from "convex/react"
 import { api } from "@/convex/_generated/api"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { useOrganization } from "@clerk/nextjs"
+import { DialogTitle } from "@radix-ui/react-dialog"
 
 type Note = {
   label: string;
@@ -44,6 +45,11 @@ export function NotePicker() {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
   const pathname = usePathname();
+  const router = useRouter()
+
+  if(selectedNote === null) {
+    router.push('/dashboard/notes')
+  }
 
   useEffect(() => {
     if (notesQuery) {
@@ -81,6 +87,7 @@ export function NotePicker() {
         </Button>
       </DrawerTrigger>
       <DrawerContent>
+        <DialogTitle></DialogTitle>
         <div className="mt-4 border-t">
           <StatusList notes={notes} setOpen={setIsOpenDrawer} setSelectedNote={setSelectedNote} selectedNote={selectedNote} />
         </div>

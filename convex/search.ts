@@ -49,12 +49,14 @@ export const searchAction = action({
       | {
           type: 'notes';
           score: number;
-          record: Doc<"notes">
+          record: Doc<"notes">;
+          title: string;
         } 
       | {
           type: 'documents';
           score: number;
-          record: Doc<"documents">
+          record: Doc<"documents">;
+          title: string;
         }
     )[] = []
     
@@ -67,7 +69,8 @@ export const searchAction = action({
             records.push({
                 record: note,
                 score: result._score,
-                type: 'notes'
+                type: 'notes',
+                title: note.title,
             })
         }).filter(Boolean)
     ))
@@ -81,7 +84,8 @@ export const searchAction = action({
           records.push({
               record: document,
               score: result._score,
-              type: 'documents'
+              type: 'documents',
+              title: document.title
           })
       }).filter(Boolean)
   ))

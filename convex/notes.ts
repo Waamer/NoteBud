@@ -122,6 +122,7 @@ export const createNoteEmbedding = internalAction({
 
 export const createNote = mutation({
   args: {
+    title: v.string(),
     text: v.string(),
     orgId: v.optional(v.string()),
   },
@@ -144,11 +145,13 @@ export const createNote = mutation({
       }
 
       noteId = await ctx.db.insert("notes", {
+        title: args.title,
         text: args.text,
         orgId: args.orgId,
       });
     } else {
       noteId = await ctx.db.insert("notes", {
+        title: args.title,
         text: args.text,
         tokenIdentifier: userId,
       });
@@ -181,6 +184,34 @@ export const deleteNote = mutation({
     await assertAccessToNote(ctx, note);
 
     await ctx.db.delete(args.noteId);
+  },
+});
+
+export const updateNote = mutation({
+  args: {
+    noteId: v.id("notes"),
+    title: v.string(),
+    text: v.string(),
+  },
+  async handler(ctx, args) {
+    const userId = (await ctx.auth.getUserIdentity())?.tokenIdentifier;
+
+    if (!userId) {
+      throw new ConvexError("You must be logged in to update a note");
+    }
+
+    const note = await ctx.db.get(args.noteId);
+
+    if (!note) {
+      throw new ConvexError("Note not found");
+    }
+
+    await assertAccessToNote(ctx, note);
+
+    await ctx.db.patch(args.noteId, {
+      title: args.title,
+      text: args.text,
+    });
   },
 });
 

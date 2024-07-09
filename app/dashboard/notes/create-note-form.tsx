@@ -18,8 +18,10 @@ import { api } from "@/convex/_generated/api"
 import { LoadingButton } from "@/components/loading-button"
 import { Textarea } from "@/components/ui/textarea"
 import { useOrganization } from "@clerk/nextjs"
+import { Input } from "@/components/ui/input"
  
 const formSchema = z.object({
+  title: z.string().min(1).max(50),
   text: z.string().min(1).max(5000),
 })
 
@@ -32,12 +34,14 @@ export default function CreateNoteForm({ onNoteCreated }: { onNoteCreated: () =>
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      title: "",
       text: "",
     },
   })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     await createNote({ 
+      title: values.title,
       text: values.text,
       orgId: organization.organization?.id
     })
@@ -47,6 +51,19 @@ export default function CreateNoteForm({ onNoteCreated }: { onNoteCreated: () =>
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 px-4 sm:px-0">
+      <FormField
+          control={form.control}
+          name="title"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Title</FormLabel>
+              <FormControl>
+                <Input placeholder="Your title" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="text"

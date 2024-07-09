@@ -13,13 +13,16 @@ export default function Header() {
                         <div className="-mt-1"><Bot strokeWidth={1.75} size={28}/></div>
                         <h1 className="text-2xl font-semibold select-none">NoteBud</h1>
                     </Link>
-                    <div className="hidden sm:block">
+                    <div className="hidden sm:block w-fit pt-[1px] bg-rose-600/10 hover:bg-rose-600/20 dark:bg-rose-950/80 dark:hover:bg-rose-900/60 rounded-md">
                         <OrganizationSwitcher />
                     </div>
                 </div>
                 <div className="flex gap-1 sm:gap-2 items-center">
                     <HeaderActions />
                 </div>
+            </div>
+            <div className="sm:hidden w-fit bg-rose-200/60 dark:bg-rose-950/30 border-t border-rose-200 dark:border-rose-950/50 rounded-bl-lg absolute right-0">
+                <OrganizationSwitcher />
             </div>
         </header>
     )

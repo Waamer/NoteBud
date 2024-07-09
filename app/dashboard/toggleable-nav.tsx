@@ -70,18 +70,6 @@ export default function ToggleableNav() {
                                     Notes
                                 </Link>
                             </li>
-                            <li>
-                                <Link className={cn(
-                                    "font-light text-lg sm:text-xl flex gap-1 items-center hover:text-rose-600/80 transition-color duration-200 w-fit",
-                                    {
-                                        "text-rose-600": pathname.endsWith('dashboard/settings')
-                                    },
-                                )} onClick={() => setIsOpen(!isOpen)}
-                                href="/dashboard/settings" >
-                                    <Settings strokeWidth={1.75} />
-                                    Settings
-                                </Link>
-                            </li>
                         </ul>
                     </nav>
                 </SheetContent>

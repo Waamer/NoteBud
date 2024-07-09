@@ -30,6 +30,7 @@ export default defineSchema({
   }).index('by_documentId_tokenIdentifier', ['documentId', 'tokenIdentifier']),
 
   notes: defineTable({
+    title: v.string(),
     text: v.string(),
     tokenIdentifier: v.optional(v.string()),
     orgId: v.optional(v.string()),
