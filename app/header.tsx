@@ -3,6 +3,7 @@ import { Bot } from "lucide-react"
 import HeaderActions from "./header-actions"
 import Link from "next/link"
 import { OrganizationSwitcher } from "@clerk/nextjs"
+import { HeaderDash } from "./dashboard/header-dash"
 
 export default function Header() {
     return (
@@ -16,6 +17,7 @@ export default function Header() {
                     <div className="hidden sm:block w-fit pt-[1px] bg-rose-600/10 hover:bg-rose-600/20 dark:bg-rose-950/80 dark:hover:bg-rose-900/60 rounded-md">
                         <OrganizationSwitcher />
                     </div>
+                    <HeaderDash />
                 </div>
                 <div className="flex gap-1 sm:gap-2 items-center">
                     <HeaderActions />

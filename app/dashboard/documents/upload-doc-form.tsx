@@ -78,7 +78,7 @@ export default function UploadDocForm({ onUpload }: { onUpload: () => void }) {
             <FormItem>
               <FormLabel>File</FormLabel>
               <FormControl>
-                <Input type="file" accept=".txt,.xml,.doc,.docx,.pdf"
+                <Input type="file" accept=".txt"
                     {...fieldProps}
                     onChange={(event) => {
                         const file = event.target.files?.[0]
