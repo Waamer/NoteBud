@@ -3,7 +3,6 @@
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -71,7 +70,7 @@ export default function CreateNoteForm({ onNoteCreated }: { onNoteCreated: () =>
             <FormItem>
               <FormLabel>Text</FormLabel>
               <FormControl>
-                <Textarea  rows={8} placeholder="Your note" {...field} />
+                <Textarea  rows={8} placeholder="Your note. After creating a note, more styling can be added when revisting the note" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

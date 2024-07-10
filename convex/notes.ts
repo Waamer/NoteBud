@@ -190,7 +190,6 @@ export const deleteNote = mutation({
 export const updateNote = mutation({
   args: {
     noteId: v.id("notes"),
-    title: v.string(),
     text: v.string(),
   },
   async handler(ctx, args) {
@@ -209,7 +208,6 @@ export const updateNote = mutation({
     await assertAccessToNote(ctx, note);
 
     await ctx.db.patch(args.noteId, {
-      title: args.title,
       text: args.text,
     });
   },

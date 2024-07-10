@@ -1,6 +1,6 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
-const { fontFamily } = require("tailwindcss/defaultTheme")
+const { fontFamily } = require("tailwindcss/defaultTheme");
 
 const config = {
   darkMode: ["class"],
@@ -8,7 +8,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './app/layout.tsx',
-	],
+  ],
   prefix: "",
   theme: {
     container: {
@@ -76,9 +76,82 @@ const config = {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
+      typography: (theme: (arg0: string) => any) => ({
+        DEFAULT: {
+          css: {
+            color: theme('colors.foreground'),
+            a: {
+              color: theme('colors.primary'),
+              '&:hover': {
+                color: theme('colors.primary-foreground'),
+              },
+            },
+            h1: { color: theme('colors.foreground') },
+            h2: { color: theme('colors.foreground') },
+            h3: { color: theme('colors.foreground') },
+            h4: { color: theme('colors.foreground') },
+            code: { color: theme('colors.primary') },
+            blockquote: {
+              color: theme('colors.foreground'),
+              borderLeftColor: theme('colors.foreground'),
+            },
+            'ul > li::before': {
+              backgroundColor: theme('colors.foreground'),
+            },
+            'ul, ol': {
+              color: theme('colors.foreground'),
+            },
+            hr: {
+              borderColor: theme('colors.border'),
+            },
+            ol: {
+              '> li::before': {
+                color: theme('colors.foreground'),
+              },
+            },
+          },
+        },
+        dark: {
+          css: {
+            color: theme('colors.foreground'),
+            a: {
+              color: theme('colors.primary'),
+              '&:hover': {
+                color: theme('colors.primary-foreground'),
+              },
+            },
+            h1: { color: theme('colors.foreground') },
+            h2: { color: theme('colors.foreground') },
+            h3: { color: theme('colors.foreground') },
+            h4: { color: theme('colors.foreground') },
+            code: { color: theme('colors.primary') },
+            blockquote: {
+              color: theme('colors.foreground'),
+              borderLeftColor: theme('colors.muted'),
+            },
+            'ul > li::before': {
+              backgroundColor: theme('colors.foreground'),
+            },
+            'ul, ol': {
+              color: theme('colors.foreground'),
+            },
+            hr: {
+              borderColor: theme('colors.border'),
+            },
+            ol: {
+              '> li::before': {
+                color: theme('colors.foreground'),
+              },
+            },
+          },
+        },
+      }),
     },
   },
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config
+  plugins: [
+    require("tailwindcss-animate"),
+    require('@tailwindcss/typography'),
+  ],
+} satisfies Config;
 
-export default config
+export default config;
