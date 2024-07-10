@@ -6,24 +6,24 @@ import { Doc } from "@/convex/_generated/dataModel";
 import { api } from "@/convex/_generated/api";
 import Link from "next/link";
 import { NotebookText, File, Sparkles } from "lucide-react";
+import DOMPurify from "dompurify";
 
 function SearchResult({
     url,
-    key,
     score,
-    text,
+    htmlContent,
     type,
     title
 }: {
     url: string,
-    key: string,
     score: number,
-    text: string,
+    htmlContent: string,
     type: string,
     title: string
 }) {
+    const sanitizedHtml = DOMPurify.sanitize(htmlContent);
     return(
-        <Link href={url} key={key}>
+        <Link href={url}>
             <li className="w-full space-y-4 transition-all bg-rose-200/60 dark:bg-rose-950/60 hover:bg-rose-300/60 hover:dark:bg-rose-900/60 rounded-lg p-3 dark:text-rose-50 flex-1 whitespace-pre-line">
                 <div className="flex gap-2 items-center flex-col min-[330px]:flex-row justify-between">
                     <div className="flex gap-1 items-center text-xl">
@@ -32,7 +32,7 @@ function SearchResult({
                     </div>
                     <div className="text-sm">Relevancy of {(score * 100).toFixed(0)}%</div>
                 </div>
-                <div><b className="text-lg font-medium">{title}:</b> {text.substring(0, 450) + '...'}</div>
+                <div><b className="text-lg font-medium">{title}:</b> <div className="prose dark:prose-dark" dangerouslySetInnerHTML={{ __html: sanitizedHtml }} /></div>
             </li>
         </Link>
     )
@@ -68,27 +68,25 @@ export default function SearchPage() {
             <ul className="flex flex-col gap-4">
             {results?.map((result) => {
                 if (result.type === 'notes') {
-                    return (
+                    return (<div key={result.record._id}>
                         <SearchResult
                             url={`/dashboard/notes/${result.record._id}`}
-                            key={result.record._id}
                             score={result.score}
-                            text={result.record.text}
+                            htmlContent={result.record.text}
                             type="Note"
                             title={result.record.title}
-                        />
+                        /></div>
 
                             )
                 } else {
-                    return (
+                    return (<div key={result.record._id}>
                         <SearchResult
                             url={`/dashboard/documents/${result.record._id}`}
-                            key={result.record._id}
                             score={result.score}
-                            text={result.record.description + ''}
+                            htmlContent={result.record.description + ''}
                             type="Document"
                             title={result.record.title}
-                        />
+                        /></div>
                             )
                 }
             })}
