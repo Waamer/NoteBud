@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { Button } from "@/components/ui/button"
 import { SignInButton, UserButton } from "@clerk/nextjs"
 import { Authenticated, Unauthenticated, AuthLoading } from "convex/react"
-import ToggleableNav from "./dashboard/toggleable-nav"
+import ToggleableNav from "../dashboard/toggleable-nav"
 
 export default function HeaderActions() {
     return (

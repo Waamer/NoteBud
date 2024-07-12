@@ -10,9 +10,9 @@ export function HeaderDash() {
     return(
     <Authenticated> 
         <Link href="/dashboard/" className={cn(
-                        "hidden md:block font-normal text-md hover:text-rose-600/80 transition-color duration-200 w-fit",
+                        "hidden md:block font-normal text-md hover:text-rose-600/70 transition-color duration-200 w-fit",
                         {
-                            "text-rose-600": pathname.endsWith('dashboard/search')
+                            "text-rose-600": pathname.endsWith('dashboard/search') || pathname.endsWith('dashboard/documents') || pathname.endsWith('dashboard/notes')
                         },
                     )}>
             <h1 className="text-md select-none">Dashboard</h1>

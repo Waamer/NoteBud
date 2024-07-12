@@ -5,7 +5,8 @@ import Providers from "./providers";
 import { Inter as FontSans } from "next/font/google"
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider"
-import Header from "./header";
+import Header from "./header/header";
+import { Footer } from "./footer";
 
 const inter = Inter({ subsets: ["latin"] });
 const fontSans = FontSans({
