@@ -7,9 +7,13 @@ NoteBud is a web app developed for managing documents and notes with features su
 - Make/join Organizations, allowing to sync documents/notes with the Organization (Using Clerk Organizations)
 - All for free
 
-This is a project I made to practise and learn more about Back-End Development and storage/database using Convex, Clerk auth, OpenAI, TipTap, 3D Spline modeling, Webhooks, and over all I learnt a lot while making this project
+This is a project I made to practise and learn more about Back-End Development and storage/database using Convex, Clerk auth, OpenAI, NextJS, TipTap, 3D Spline modeling, Webhooks, and over all I learnt a lot while making this project.
+This is a project I intend to improve more and use my own self
 
 #### Check it out here! (https://note-bud.vercel.app/)
+
+### Possible additional features to add
+- Allow Document upload for Docs, PDF, and possibly other file type then just the current txt only
 
 ### Known Bugs
 
