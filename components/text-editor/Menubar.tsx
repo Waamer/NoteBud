@@ -42,9 +42,9 @@ const MenuBar: React.FC<MenuBarProps> = ({ editor }) => {
     editor.chain().focus().setParagraph().run();
   };
 
-  const handleToggleHeading = (level: number) => {
+  const handleToggleHeading = (level: 1 | 2 | 3 | 4 | 5 | 6) => {
     editor.chain().focus().toggleHeading({ level }).run();
-  };
+  };  
 
   const handleToggleBulletList = () => {
     editor.chain().focus().toggleBulletList().run();
