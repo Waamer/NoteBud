@@ -5,9 +5,11 @@ import { Id } from "@/convex/_generated/dataModel";
 import { cn } from "@/lib/utils";
 import { useQuery } from "convex/react";
 import { QuestionForm } from "./question-form";
+import { useOrganization } from "@clerk/nextjs";
 
 export default function ChatPanel({ documentId }: { documentId: Id<"documents"> } ) {
-    const chats = useQuery(api.chats.getChatsForDocument, { documentId })
+    const organization = useOrganization()
+    const chats = useQuery(api.chats.getChatsForDocument, { documentId, orgId: organization.organization?.id })
 
     return (
         <div className="bg-rose-200/60 dark:bg-rose-950/30 rounded-lg p-4 flex flex-col">

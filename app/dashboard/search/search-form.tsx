@@ -1,11 +1,9 @@
 'use client'
 
 import { LoadingButton } from "@/components/loading-button";
-import { Button } from "@/components/ui/button";
-import { FormControl, FormField, FormItem, FormLabel, FormMessage, Form } from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormMessage, Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { api } from "@/convex/_generated/api";
-import { Doc, Id } from "@/convex/_generated/dataModel";
 import { useOrganization } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAction } from "convex/react";
@@ -21,19 +19,19 @@ export function SearchForm({ setResults }: { setResults: (notes: typeof api.sear
     const searchAction = useAction(api.search.searchAction)
 
     const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-          search: "",
-        },
+      resolver: zodResolver(formSchema),
+      defaultValues: {
+        search: "",
+      },
     })
     
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        await searchAction({ search: values.search, orgId: organization.organization?.id }).then(setResults)
-        form.reset()
+      await searchAction({ search: values.search, orgId: organization.organization?.id }).then(setResults)
+      form.reset()
     }
 
     return (
-        <Form {...form}>
+      <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-1 gap-2 mt-2.5 flex-col sm:flex-row">
           <FormField
             control={form.control}

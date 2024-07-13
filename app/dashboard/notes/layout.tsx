@@ -1,9 +1,7 @@
 'use client'
 
-import { useOrganization } from "@clerk/nextjs";
 import CreateNoteButton from "./create-note-button";
 import { NotePicker } from "./pick-a-note";
-
 
 export default function NotesLayout({
     children,

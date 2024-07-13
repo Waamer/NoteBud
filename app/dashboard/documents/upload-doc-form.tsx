@@ -3,11 +3,9 @@
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,7 +14,6 @@ import {
 import { Input } from "@/components/ui/input"
 import { useMutation } from "convex/react"
 import { api } from "@/convex/_generated/api"
-import { Loader2 } from "lucide-react"
 import { LoadingButton } from "@/components/loading-button"
 import { Id } from "@/convex/_generated/dataModel"
 import { useOrganization } from "@clerk/nextjs"
@@ -28,9 +25,9 @@ const formSchema = z.object({
 
 export default function UploadDocForm({ onUpload }: { onUpload: () => void }) {
 
-    const organization = useOrganization()
-    const createDocument = useMutation(api.documents.createDocument);
-    const generateUploadUrl = useMutation(api.documents.generateUploadUrl)
+  const organization = useOrganization()
+  const createDocument = useMutation(api.documents.createDocument);
+  const generateUploadUrl = useMutation(api.documents.generateUploadUrl)
     
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -44,9 +41,9 @@ export default function UploadDocForm({ onUpload }: { onUpload: () => void }) {
     const url = await generateUploadUrl()
 
     const result = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": values.file.type },
-        body: values.file,
+      method: "POST",
+      headers: { "Content-Type": values.file.type },
+      body: values.file,
     });
 
     const { storageId } = await result.json();
@@ -65,7 +62,7 @@ export default function UploadDocForm({ onUpload }: { onUpload: () => void }) {
             <FormItem>
               <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input placeholder="Expense Report" {...field} />
+                <Input placeholder="Any text file" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

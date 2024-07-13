@@ -14,8 +14,8 @@ import { Eye, Loader2 } from "lucide-react"
 import Link from "next/link"
 
 export function DocumentCard({ document }: {document: Doc<"documents">}) {
-    return (
-        <Card className="bg-rose-200/60 dark:bg-rose-950/30">
+  return (
+    <Card className="bg-rose-200/60 dark:bg-rose-950/30">
       <CardHeader>
         <CardTitle>{document.title}</CardTitle>
         <CardDescription>Chat with your document from the View button</CardDescription>
@@ -26,11 +26,11 @@ export function DocumentCard({ document }: {document: Doc<"documents">}) {
       <CardFooter className="flex justify-between">
         <Button asChild variant="outline" className="group bg-rose-600/15 hover:bg-rose-600/25 dark:bg-rose-950 dark:hover:bg-rose-900/60 border-none flex items-center gap-2">
           <Link href={"/dashboard/documents/" + document._id}>
-            <Eye className="size-4 group-hover:scale-125 transition-all" />
+            <Eye className="size-4 group-hover:size-5 transition-all" />
             View
           </Link>
         </Button>
       </CardFooter>
     </Card>
-    )
+  )
 }

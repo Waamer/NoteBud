@@ -3,7 +3,7 @@ import { Bot } from "lucide-react"
 import HeaderActions from "./header-actions"
 import Link from "next/link"
 import { OrganizationSwitcher } from "@clerk/nextjs"
-import { HeaderDash } from "../dashboard/header-dash"
+import { HeaderDash } from "./header-dash"
 import { OrgActions } from "./organization-actions"
 
 export default function Header() {
@@ -15,7 +15,7 @@ export default function Header() {
                         <div className="-mt-1"><Bot strokeWidth={1.75} size={28}/></div>
                         <h1 className="text-2xl font-semibold select-none">NoteBud</h1>
                     </Link>
-                    <div className="hidden sm:block w-fit pt-[1px] bg-rose-600/10 hover:bg-rose-600/20 dark:bg-rose-950/80 dark:hover:bg-rose-900/60 rounded-md">
+                    <div className="hidden sm:block w-fit pt-[1px] bg-rose-600/10 hover:bg-rose-600/20 dark:bg-rose-950/80 dark:hover:bg-rose-900/60 transition-all duration-200 rounded-md">
                         <OrgActions />
                     </div>
                     <HeaderDash />

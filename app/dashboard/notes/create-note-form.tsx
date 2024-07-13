@@ -26,8 +26,8 @@ const formSchema = z.object({
 
 export default function CreateNoteForm({ onNoteCreated }: { onNoteCreated: () => void }) {
 
-    const createNote = useMutation(api.notes.createNote);
-    const organization = useOrganization()
+  const createNote = useMutation(api.notes.createNote);
+  const organization = useOrganization()
     
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -77,7 +77,7 @@ export default function CreateNoteForm({ onNoteCreated }: { onNoteCreated: () =>
           )}
         />
         <LoadingButton isLoading={form.formState.isSubmitting} loadingText="Creating...">
-            Create
+          Create
         </LoadingButton>
       </form>
     </Form>

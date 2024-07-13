@@ -1,6 +1,6 @@
 'use client'
 import { cn } from "@/lib/utils";
-import { Files, FileSearch, NotebookPen, Settings } from "lucide-react";
+import { Files, FileSearch, NotebookPen } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -46,5 +46,5 @@ export default function SideNav() {
                 </li>
             </ul>
         </nav>
-  )
+    )
 }

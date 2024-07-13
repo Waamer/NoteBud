@@ -2,10 +2,11 @@
 
 import { LoadingButton } from "@/components/loading-button";
 import { Button } from "@/components/ui/button";
-import { FormControl, FormField, FormItem, FormLabel, FormMessage, Form } from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormMessage, Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
+import { useOrganization } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAction } from "convex/react";
 import { useForm } from "react-hook-form";
@@ -16,6 +17,7 @@ const formSchema = z.object({
 })
 
 export function QuestionForm({ documentId }: { documentId: Id<"documents"> }) {
+    const organization = useOrganization()
     const askQuestion = useAction(api.documents.askQuestion)
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -26,7 +28,7 @@ export function QuestionForm({ documentId }: { documentId: Id<"documents"> }) {
     })
     
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        await askQuestion({ question: values.text, documentId })
+        await askQuestion({ question: values.text, documentId, orgId: organization.organization?.id })
         form.reset()
     }
 

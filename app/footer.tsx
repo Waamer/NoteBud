@@ -1,11 +1,11 @@
 import { Bot, Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-  } from "@/components/ui/tooltip"
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
   
 
 export function Footer() {

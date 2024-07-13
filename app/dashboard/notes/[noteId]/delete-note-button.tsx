@@ -3,7 +3,6 @@
 import { LoadingButton } from "@/components/loading-button"
 import {
     AlertDialog,
-    AlertDialogAction,
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
@@ -16,7 +15,7 @@ import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, Dr
 import { Button } from "@/components/ui/button"
 import { api } from "@/convex/_generated/api"
 import { Id } from "@/convex/_generated/dataModel"
-import { btnIconStyles, btnStyles, outlineBtnStyles } from "@/styles/styles"
+import { outlineBtnStyles } from "@/styles/styles"
 import { useMutation } from "convex/react"
 import { Trash2 } from "lucide-react"
 import { useState } from "react"
@@ -32,7 +31,7 @@ export function DeleteNoteButton({ noteId }: { noteId: Id<"notes"> }) {
 
     return (
     <>
-        <div className="hidden sm:block">
+    <div className="hidden sm:block">
         <AlertDialog open={isOpenDialog} onOpenChange={(open) => {setIsOpenDialog(open)}}>
             <AlertDialogTrigger asChild>
                 <Button variant="destructive" size="icon" className="w-full sm:px-2 flex items-center gap-2">
@@ -65,9 +64,9 @@ export function DeleteNoteButton({ noteId }: { noteId: Id<"notes"> }) {
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>
-        </div>
+    </div>
 
-        <div className="sm:hidden w-full">
+    <div className="sm:hidden w-full">
         <Drawer open={isOpenDrawer} onOpenChange={setIsOpenDrawer}>
             <DrawerTrigger asChild>
                 <Button variant="destructive" size="icon" className="w-full sm:px-2 flex items-center gap-2">
@@ -101,8 +100,8 @@ export function DeleteNoteButton({ noteId }: { noteId: Id<"notes"> }) {
                 </LoadingButton>
               </DrawerFooter>
             </DrawerContent>
-          </Drawer>
-        </div>
+        </Drawer>
+    </div>
     </>
     )
 }

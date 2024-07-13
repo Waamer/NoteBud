@@ -21,45 +21,47 @@ export default function UploadDocButton() {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false)
 
   return (
-          <>
-          <div className="hidden sm:block">
-            <Dialog open={isOpenDialog} onOpenChange={setIsOpenDialog}>
-              <DialogTrigger asChild>
-                <Button className={btnStyles}><Upload className={btnIconStyles} />Upload Document</Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                  <DialogTitle>Upload a document</DialogTitle>
-                  <DialogDescription>
-                    Upload a team document for you to search over in the future
-                  </DialogDescription>
-                </DialogHeader>
-                <UploadDocForm onUpload={() => setIsOpenDialog(false) } />
-              </DialogContent>
-          </Dialog>
-        </div>
+    <>
+
+      <div className="hidden sm:block">
+        <Dialog open={isOpenDialog} onOpenChange={setIsOpenDialog}>
+          <DialogTrigger asChild>
+            <Button className={btnStyles}><Upload className={btnIconStyles} />Upload Document</Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Upload a document</DialogTitle>
+              <DialogDescription>
+                Upload a document for you/your organization to chat/search over in the future
+              </DialogDescription>
+            </DialogHeader>
+            <UploadDocForm onUpload={() => setIsOpenDialog(false) } />
+          </DialogContent>
+        </Dialog>
+      </div>
   
-        <div className="sm:hidden">
-          <Drawer open={isOpenDrawer} onOpenChange={setIsOpenDrawer}>
-            <DrawerTrigger asChild>
-              <Button className={btnStyles}><Upload className={btnIconStyles} />Upload Document</Button>
-            </DrawerTrigger>
-            <DrawerContent>
-              <DrawerHeader className="text-left">
-                <DrawerTitle>Upload a document</DrawerTitle>
-                <DrawerDescription>
-                  Upload a team document for you to search over in the future
-                </DrawerDescription>
-              </DrawerHeader>
-              <UploadDocForm onUpload={() => setIsOpenDrawer(false) } />
-              <DrawerFooter className="pt-2">
-                <DrawerClose asChild>
-                  <Button variant="outline" className={outlineBtnStyles}>Cancel</Button>
-                </DrawerClose>
-              </DrawerFooter>
-            </DrawerContent>
-          </Drawer>
-        </div>
-        </>
+      <div className="sm:hidden">
+        <Drawer open={isOpenDrawer} onOpenChange={setIsOpenDrawer}>
+          <DrawerTrigger asChild>
+            <Button className={btnStyles}><Upload className={btnIconStyles} />Upload Document</Button>
+          </DrawerTrigger>
+          <DrawerContent>
+            <DrawerHeader className="text-left">
+              <DrawerTitle>Upload a document</DrawerTitle>
+              <DrawerDescription>
+                Upload a document for you/your organization to chat/search over in the future
+              </DrawerDescription>
+            </DrawerHeader>
+            <UploadDocForm onUpload={() => setIsOpenDrawer(false) } />
+            <DrawerFooter className="pt-2">
+              <DrawerClose asChild>
+                <Button variant="outline" className={outlineBtnStyles}>Cancel</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+      </div>
+
+    </>
   );
 }

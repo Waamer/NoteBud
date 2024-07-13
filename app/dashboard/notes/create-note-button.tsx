@@ -35,7 +35,7 @@ export default function CreateNoteButton() {
               <DialogHeader>
                 <DialogTitle>Create a Note</DialogTitle>
                 <DialogDescription>
-                  Type what ever note you want to be searchable later on
+                  Create a note that you want to be searchable/editable later on
                 </DialogDescription>
               </DialogHeader>
               <CreateNoteForm onNoteCreated={() => {
@@ -58,7 +58,7 @@ export default function CreateNoteButton() {
             <DrawerHeader className="text-left">
               <DrawerTitle>Create a Note</DrawerTitle>
               <DrawerDescription>
-                Type what ever note you want to be searchable later on
+                Create a note that you want to be searchable/editable later on
               </DrawerDescription>
             </DrawerHeader>
             <CreateNoteForm onNoteCreated={() => {
@@ -76,7 +76,7 @@ export default function CreateNoteButton() {
           </DrawerContent>
         </Drawer>
       </div>
-      </>
+    </>
   )
 }
 

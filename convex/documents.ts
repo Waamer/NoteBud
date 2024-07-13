@@ -238,6 +238,7 @@ export const askQuestion = action({
   args: {
     question: v.string(),
     documentId: v.id("documents"),
+    orgId: v.optional(v.string())
   },
   async handler(ctx, args) {
     const accessObj = await ctx.runQuery(
@@ -274,27 +275,60 @@ export const askQuestion = action({
         model: "gpt-3.5-turbo",
       });
 
-    await ctx.runMutation(internal.chats.createChatRecord, {
-      documentId: args.documentId,
-      text: args.question,
-      isHuman: true,
-      tokenIdentifier: accessObj.userId,
-    });
-
-    const response =
+      const response =
       chatCompletion.choices[0].message.content ??
       "could not generate a response";
 
-    await ctx.runMutation(internal.chats.createChatRecord, {
-      documentId: args.documentId,
-      text: response,
-      isHuman: false,
-      tokenIdentifier: accessObj.userId,
-    });
+      if (args.orgId) {
+        await ctx.runMutation(internal.chats.createChatRecord, {
+          documentId: args.documentId,
+          text: args.question,
+          isHuman: true,
+          orgId: args.orgId,
+        });
+    
+        await ctx.runMutation(internal.chats.createChatRecord, {
+          documentId: args.documentId,
+          text: response,
+          isHuman: false,
+          orgId: args.orgId,
+        });
+      } else {
+        await ctx.runMutation(internal.chats.createChatRecord, {
+          documentId: args.documentId,
+          text: args.question,
+          isHuman: true,
+          tokenIdentifier: accessObj.userId,
+        });
+    
+        await ctx.runMutation(internal.chats.createChatRecord, {
+          documentId: args.documentId,
+          text: response,
+          isHuman: false,
+          tokenIdentifier: accessObj.userId,
+        });
+      }
 
     return response;
   },
 });
+
+export const getChatsForDocument = query({
+  args: {
+      documentId: v.id("documents"),
+  },
+  async handler(ctx, args) {
+
+      const userId = (await ctx.auth.getUserIdentity())?.tokenIdentifier
+      if (!userId) return []
+
+      return await ctx.db.query("chats").withIndex("by_documentId",(q) =>
+        q
+          .eq("documentId", args.documentId)
+        ).collect()
+
+  }
+})
 
 export const deleteDocument = mutation({
   args: {
@@ -305,6 +339,11 @@ export const deleteDocument = mutation({
 
     if (!accessObj) {
       throw new ConvexError("You do not have access to this document");
+    }
+
+    const chats = await getChatsForDocument(ctx, { documentId: args.documentId });
+    for (const chat of chats) {
+      await ctx.db.delete(chat._id);
     }
 
     await ctx.storage.delete(accessObj.document.fileId);

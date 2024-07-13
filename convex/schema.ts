@@ -25,9 +25,12 @@ export default defineSchema({
   chats: defineTable({ 
     documentId: v.id("documents"),
     isHuman: v.boolean(),
-    tokenIdentifier: v.string(),
+    tokenIdentifier: v.optional(v.string()),
+    orgId: v.optional(v.string()),
     text: v.string(),
-  }).index('by_documentId_tokenIdentifier', ['documentId', 'tokenIdentifier']),
+  }).index('by_documentId_tokenIdentifier', ['documentId', 'tokenIdentifier'])
+    .index('by_documentId_orgId', ['documentId', 'orgId'])
+    .index('by_documentId', ['documentId']),
 
   notes: defineTable({
     title: v.string(),
