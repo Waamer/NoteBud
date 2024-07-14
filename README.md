@@ -18,4 +18,5 @@ This is a project I intend to improve more and use my own self
 ## Known Bugs
 - Home page gradient not visible on mobile (Solved! Too much CSS Blur making gradient barely visible)
 - Home page animated text and 3D Logo both lag on mobile (Solved! Too much performance intensive CSS Blur on gradient)
-- Typing in Create Note Drawer on mobile is quite difficult, not ideal for UX even if the UI looks good
+- Typing in Create Note Drawer on mobile is quite difficult, not ideal for UX even if the UI looks good (Solved! Removed Drawer due to text not visible while typing due to close proximity to bottom of mobile screen)
+- Making a character bold while in dark mode makes it barley visible
