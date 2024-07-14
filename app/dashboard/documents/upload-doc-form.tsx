@@ -62,7 +62,7 @@ export default function UploadDocForm({ onUpload }: { onUpload: () => void }) {
             <FormItem>
               <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input placeholder="Any text file" {...field} />
+                <Input className="text-[16px]" placeholder="Any text file" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

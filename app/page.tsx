@@ -17,7 +17,7 @@ export default function LandingPage() {
           <div className="h-[94%] mt-6 max-w-5xl bg-gradient-to-tr from-rose-400/70 via-rose-600/70 dark:via-rose-900/70 to-[#b061ff]/70 dark:to-[#C084FC]/70 blur-[40px]"></div>
         </div>
           <div className="hidden sm:block -z-40 absolute inset-x-0 m-auto mt-10 h-full mx-8 sm:mx-auto sm:h-80 max-w-5xl bg-gradient-to-tr from-rose-400 via-rose-600 dark:via-rose-900 to-[#b061ff] dark:to-[#C084FC] blur-[118px]"></div>
-          <div className="flex-1 rounded-none rounded-t-lg lg:rounded-none lg:rounded-e-lg flex flex-col justify-center lg:justify-end items-center h-64 lg:h-auto lg:w-fit bg-rose-200/50 dark:bg-rose-950/40">
+          <div className="flex-1 rounded-none rounded-t-lg lg:rounded-none lg:rounded-e-lg flex flex-col justify-center lg:justify-end items-center h-64 lg:h-auto lg:w-fit bg-rose-200/60 dark:bg-rose-950/50 lg:bg-rose-200/50 lg:dark:bg-rose-950/40">
             <Bot />
             <div className="flex gap-1 p-1.5 font-medium mr-auto bg-rose-200/40 dark:bg-rose-950/30 rounded-tr-lg">
               <MousePointerClick className="size-5" />

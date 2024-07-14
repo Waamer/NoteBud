@@ -49,7 +49,7 @@ export default function CreateNoteForm({ onNoteCreated }: { onNoteCreated: () =>
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 px-4 sm:px-0">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 sm:px-0">
       <FormField
           control={form.control}
           name="title"
@@ -57,7 +57,7 @@ export default function CreateNoteForm({ onNoteCreated }: { onNoteCreated: () =>
             <FormItem>
               <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input placeholder="Your title" {...field} />
+                <Input className="text-[16px]" placeholder="Your title" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -70,7 +70,7 @@ export default function CreateNoteForm({ onNoteCreated }: { onNoteCreated: () =>
             <FormItem>
               <FormLabel>Text</FormLabel>
               <FormControl>
-                <Textarea  rows={8} placeholder="Your note. After creating a note, more styling can be added when revisting the note" {...field} />
+                <Textarea className="text-[16px]" rows={8} placeholder="Your note. After creating a note, more styling can be added when revisting the note" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

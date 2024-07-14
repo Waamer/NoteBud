@@ -16,22 +16,18 @@ import { Plus } from "lucide-react";
 import { btnIconStyles, btnStyles, outlineBtnStyles } from "@/styles/styles";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/components/ui/use-toast";
-import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
-  
 
 export default function CreateNoteButton() {
   const [isOpenDialog, setIsOpenDialog] = useState(false)
-  const [isOpenDrawer, setIsOpenDrawer] = useState(false)
   const { toast } = useToast()
  
     return (
-      <>
-        <div className="hidden sm:block">
+        <div className="w-full">
           <Dialog open={isOpenDialog} onOpenChange={setIsOpenDialog}>
             <DialogTrigger asChild>
-              <Button className={btnStyles}><Plus className={btnIconStyles} />Create Note</Button>
+              <Button className={cn(btnStyles, "w-full sm:w-auto max-w-none")}><Plus className={btnIconStyles} />Create Note</Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="max-w-[425px]">
               <DialogHeader>
                 <DialogTitle>Create a Note</DialogTitle>
                 <DialogDescription>
@@ -48,35 +44,6 @@ export default function CreateNoteButton() {
             </DialogContent>
         </Dialog>
       </div>
-
-      <div className="sm:hidden w-full">
-        <Drawer open={isOpenDrawer} onOpenChange={setIsOpenDrawer}>
-          <DrawerTrigger asChild>
-            <Button className={cn(btnStyles, "w-full max-w-none")}><Plus className={btnIconStyles} />Create Note</Button>
-          </DrawerTrigger>
-          <DrawerContent>
-            <DrawerHeader className="text-left">
-              <DrawerTitle>Create a Note</DrawerTitle>
-              <DrawerDescription>
-                Create a note that you want to be searchable/editable later on
-              </DrawerDescription>
-            </DrawerHeader>
-            <CreateNoteForm onNoteCreated={() => {
-              setIsOpenDrawer(false);
-              toast({
-                title: "Note created",
-                description: "Your note has been successfully created",
-                })
-              }}/>
-            <DrawerFooter className="pt-2">
-              <DrawerClose asChild>
-                <Button variant="outline" className={outlineBtnStyles}>Cancel</Button>
-              </DrawerClose>
-            </DrawerFooter>
-          </DrawerContent>
-        </Drawer>
-      </div>
-    </>
   )
 }
 
